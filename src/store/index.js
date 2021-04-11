@@ -10,9 +10,11 @@ const { middleware, enhancer } = connectedRoutes;
 const sagaMiddleware = createSagaMiddleware();
 
 const middlewares = applyMiddleware(middleware, sagaMiddleware);
-const enhancers = compose(enhancer, middlewares, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-const store = createStore(rootReducer, enhancers);
+const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(rootReducer, composeEnhancers(enhancer, middlewares));
 
 sagaMiddleware.run(rootSaga);
 

@@ -8,4 +8,9 @@ const mapRoutes = {
   [ROUTES.TODO]: '/todos/:id'
 };
 
-export default connectRoutes(mapRoutes);
+console.log(process.env.NODE_ENV);
+
+export default connectRoutes(mapRoutes, {
+  basename:  process.env.NODE_ENV === 'development' ? '' : 'todo-redux-saga',
+  title: state => `${state.page} | Todo App`
+});

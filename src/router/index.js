@@ -10,5 +10,8 @@ const mapRoutes = {
 
 export default connectRoutes(mapRoutes, {
   basename:  process.env.NODE_ENV === 'development' ? '' : 'todo-redux-saga',
-  title: state => `${state.page} | Todo App`
+  title: state => {
+    const id = state.location.payload.id ?? '';
+    return `${state.page} ${id} | Todo App`
+  }
 });

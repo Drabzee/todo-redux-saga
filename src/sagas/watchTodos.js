@@ -14,7 +14,8 @@ function* handleTodos() {
 
 function* handleTodoUpdateReq({ id, data }) {
   try {
-    const todo = yield call(updateTodo, id, data);
+    const currentUserId = yield select(state => state.users.currentUser);
+    const todo = yield call(updateTodo, id, data, currentUserId);
     yield put(todosUpdateRes(todo));
   } catch(err) {}
 }

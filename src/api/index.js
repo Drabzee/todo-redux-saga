@@ -28,9 +28,9 @@ export const fetchUsers = async () => {
   return users;
 }
 
-export const updateTodo = async (id, data) => {
+export const updateTodo = async (id, data, userId) => {
   const res = await axios.patch(`https://jsonplaceholder.typicode.com/todos/${id}`, data);
-  return res.data;
+  return {...res.data, id, userId};
 }
 
 export const addTodo = ({ title, completed, userId }) => {

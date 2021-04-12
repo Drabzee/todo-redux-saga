@@ -45,6 +45,16 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <NavLink
+                to={{ type: ROUTES.ADD_TODO }}
+                className="nav-link"
+                activeClassName="active"
+                aria-current="page"
+              >
+                Add Todo
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
                 to={{ type: ROUTES.USERS }}
                 className="nav-link"
                 activeClassName="active"

@@ -9,6 +9,7 @@ const initialState = {
 const todosReducer = (state = initialState, action) => {
   switch(action.type) {
     case TODOS.UPDATE_REQ:
+    case TODOS.ADD_REQ:
     case TODOS.LOAD: return {
       ...state,
       isLoading: true,
@@ -33,6 +34,13 @@ const todosReducer = (state = initialState, action) => {
       isLoading: false,
       error: "",
       data: { byId: {...state.data.byId, [action.todo.id]: action.todo}, allIds: [...state.data.allIds]}
+    }
+
+    case TODOS.ADD_RES: return {
+      ...state,
+      isLoading: false,
+      error: "",
+      data: { byId: {...state.data.byId, [action.todo.id]: action.todo}, allIds: [...state.data.allIds, action.todo.id]}
     }
 
     default: return state;

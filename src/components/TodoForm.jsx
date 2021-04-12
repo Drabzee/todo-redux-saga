@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { todosUpdateReq } from "../actions";
 import Loader from "./Loader";
+import SelectUser from "./SelectUser";
 
-const Todo = ({
+const AddTodo = ({
   id,
   todo,
   user,
-  todosUpdateReq,
+  formSubmitAction,
   isLoading
 }) => {
 
@@ -39,16 +38,19 @@ const Todo = ({
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    todosUpdateReq(id, {
+    formSubmitAction({
       title: todoFormData.title,
       completed: todoFormData.completed,
-    });
+    }, id);
   };
 
   return (
     <section className="container">
       {isLoading && <Loader />}
-      <h1 className="text-center">Update Todo</h1>
+      <h1 className="text-center">{todo ? 'Update' : 'Add'} Todo</h1>
+      
+      {!todo && <SelectUser />}
+
       <form onSubmit={handleFormSubmit}>
         <div className="mb-3">
           <input
@@ -56,6 +58,8 @@ const Todo = ({
             type="text"
             className="form-control form-control-lg"
             id="title"
+            placeholder="Buy Milk"
+            required={true}
             value={
               todoFormData.isUpdated
                 ? todoFormData.title
@@ -90,29 +94,12 @@ const Todo = ({
             </p>
           )}
         </div>
-        <button type="submit" className="btn btn-warning">
-          Update
+        <button type="submit" className={`btn btn-${todo ? 'warning' : 'success'}`}>
+          {todo ? 'Update' : 'Add Todo'}
         </button>
       </form>
     </section>
   );
 };
 
-const mapStateToProps = ({ location, todos, users }) => {
-  const id = location.payload.id;
-  return {
-    isLoading: todos.isLoading || users.isLoading,
-    id: id,
-    todo: todos.data.byId[id],
-    user:
-      users.data.allIds.length && todos.data.allIds.length
-        ? users.data.byId[todos.data.byId[id].userId]
-        : null,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  todosUpdateReq: (id, data) => dispatch(todosUpdateReq(id, data))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Todo);
+export default AddTodo;

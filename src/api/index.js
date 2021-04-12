@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+let id = 201;
+
 export const fetchTodos = async () => {
   const res = await axios.get('https://jsonplaceholder.typicode.com/todos');
   const dataArray = res.data;
@@ -29,4 +31,15 @@ export const fetchUsers = async () => {
 export const updateTodo = async (id, data) => {
   const res = await axios.patch(`https://jsonplaceholder.typicode.com/todos/${id}`, data);
   return res.data;
+}
+
+export const addTodo = ({ title, completed, userId }) => {
+  return new Promise((res) => {
+    setTimeout(() => {
+      res({
+        id: id++,
+        title, completed, userId
+      });
+    }, 500);
+  });
 }

@@ -2,10 +2,13 @@ export const ROUTES = {
   HOME: 'HOME',
   TODOS: 'TODOS',
   TODO: 'TODO',
-  USERS: 'USERS'
+  USERS: 'USERS',
+  ADD_TODO: 'ADD_TODO'
 };
 
 export const TODOS = {
+  ADD_REQ: 'TODOS_ADD_REQ',
+  ADD_RES: 'TODOS_ADD_RES',
   LOAD: 'TODOS_LOAD',
   SUCCESS: 'TODOS_SUCCESS',
   FAIL: 'TODOS_FAIL',

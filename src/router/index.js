@@ -5,7 +5,8 @@ const mapRoutes = {
   [ROUTES.HOME]: '/',
   [ROUTES.USERS]: '/users',
   [ROUTES.TODOS]: '/todos',
-  [ROUTES.TODO]: '/todos/:id'
+  [ROUTES.TODO]: '/todos/:id',
+  [ROUTES.ADD_TODO]: '/add-todo'
 };
 
 export default connectRoutes(mapRoutes, {

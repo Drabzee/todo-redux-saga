@@ -14,6 +14,16 @@ export const todosFail = (error) => ({
   error
 });
 
+export const todosAddReq = (todo) => ({
+  type: TODOS.ADD_REQ,
+  todo
+});
+
+export const todosAddRes = (todo) => ({
+  type: TODOS.ADD_RES,
+  todo
+});
+
 export const todosUpdateReq = (id, data) => ({
   type: TODOS.UPDATE_REQ,
   id, data

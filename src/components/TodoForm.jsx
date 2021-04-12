@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import SelectUser from "./SelectUser";
 
-const AddTodo = ({
+const TodoForm = ({
   id,
   todo,
   user,
@@ -102,4 +102,4 @@ const AddTodo = ({
   );
 };
 
-export default AddTodo;
+export default TodoForm;
